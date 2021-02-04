@@ -1,0 +1,29 @@
+<div class="text-center m-5">
+    <main class="form-signin ">
+        {{#if msg}}
+        <div class="alert alert-danger" role="alert">
+            {{msg}}
+        </div>
+        {{else}}
+        {{/if}}
+
+        {{#if validationErrors}}
+        {{#each validationErrors}}
+            <div class="alert alert-danger" role="alert">
+                {{this.msg}}
+            </div>
+        {{/each}}
+        {{/if}}
+
+        <form action="/auth" method="post">
+            <h1 class="h3 mb-3 fw-normal">Login</h1>
+            <label for="email" class="visually-hidden">Email address</label>
+            <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required
+                autofocus>
+            <label for="password" class="visually-hidden">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+        </form>
+    </main>

@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
+const { reqAuthentication, notReqAuthentication } = require("../config/auth");
 // Require DB
 const db = require("../models");
 
@@ -20,7 +21,7 @@ router.post(
       "Please enter a password with 6 or more characters"
     ).isLength({ min: 6 }),
   ],
-  async (req, res) => {
+  async (req, res, next) => {
     const validationErrors = validationResult(req);
     let errors = "";
     if (!validationErrors.isEmpty()) {
@@ -53,14 +54,34 @@ router.post(
             isSuperuser: req.body.isSuperuser,
           })
             .then((user) => {
-              console.log("user: ", user);
-              // res.send({ msg: "User Registered Sucessfully" });
-              res.redirect("/");
+              // Then create JWT
+              const oneHour = 60 * 60;
+              jwt.sign(
+                { id: user.id },
+                process.env.JWT_SECRET_KEY,
+                {
+                  expiresIn: oneHour,
+                },
+                (err, token) => {
+                  if (err) throw Error();
+                  res.cookie("jwt", token, {
+                    maxAge: oneHour * 24,
+                    httpOnly: true,
+                  });
+                  console.log(
+                    "User is saved to the database and cookie created"
+                  );
+                  res.redirect("/");
+                }
+              );
+              // res.redirect("/");
             })
             .catch((err) => {
-              errors = "User Register Error, Try again";
-              // res.send({ msg: "User Register Error" });
-              res.render("register", { msg: errors });
+              console.log(err);
+              res.redirect("/");
+              // errors = "User Register Error, Try again";
+              // // res.send({ msg: "User Register Error" });
+              // res.render("register", { msg: errors });
             });
         }
       })
