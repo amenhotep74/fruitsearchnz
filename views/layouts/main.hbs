@@ -51,15 +51,32 @@
                 </ul>
                 <div class="d-flex">
                     <!-- Login Register Links -->
-                    <a class="nav-link btn btn-success" href="#">Submit Data</a>
-                    <a class="nav-link white_text" href="/register"><i class="fas fa-user-circle"></i> Register</a>
-                    <a class="nav-link white_text" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
-
+                    {{#if isAdmin}}
+                    <a class="nav-link btn btn-success" href="/dashboard">Admin Area</a>
+                    {{/if}}
+                    {{#if user}}
+                        <a class="nav-link white_text">
+                            <span class="">Welcome, {{username}}</span>
+                        </a>
+                        <a class="nav-link white_text" href="/auth/logout"><i class="fas fa-user-circle"></i> Logout</a>
+                    {{else}}
+                        <a class="nav-link white_text" href="/register"><i class="fas fa-user-circle"></i> Register</a>
+                        <a class="nav-link white_text" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    {{/if}}
                     
                 </div>
             </div>
         </div>
     </nav>
+    {{!-- {{#if user}}
+    <p>{{id}}</p>
+    <p>Welcome, {{username}}</p>
+        <p>email: {{email}}</p>
+        <p>isAdmin: {{isAdmin}}</p>
+    {{else}}
+    <p>NO USER</p>
+    {{/if}} --}}
+    
     {{{body}}}
     <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->

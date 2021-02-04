@@ -71,7 +71,12 @@ app.get("/dashboard", reqAuthentication, async (req, res, next) => {
             console.log("docs.dv.id:", docs.dataValues.username);
             const user = docs.dataValues.username;
             console.log("user: ", user);
-            res.render("dashboard", { user });
+            // if user is not admin redirect
+            if (!docs.dataValues.isAdmin) {
+              res.redirect("/");
+            } else {
+              res.render("dashboard", { user });
+            }
           })
           .catch((err) => {
             console.log(err);

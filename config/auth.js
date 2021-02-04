@@ -50,9 +50,14 @@ const checkAuthentication = async (req, res, next) => {
         const findbyId = decodedToken.id;
         db.User.findByPk(findbyId)
           .then((docs) => {
-            console.log("checkauthdocs:", docs.dataValues);
+            console.log("checkauthdocs:", docs.dataValues.user);
 
-            res.locals.user = docs.dataValues.email;
+            // Variables to access inside handlebars
+            res.locals.user = docs.dataValues;
+            res.locals.id = docs.dataValues.id;
+            res.locals.username = docs.dataValues.username;
+            res.locals.email = docs.dataValues.email;
+            res.locals.isAdmin = docs.dataValues.isAdmin;
             next();
           })
           .catch((err) => {
