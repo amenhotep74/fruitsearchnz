@@ -15,7 +15,7 @@ const logger = require("morgan");
 // app.use(cors());
 // parse requests of content-type - application/json
 
-// parse requests of content-type - application/x-www-form-urlencoded
+// parse requests of content-type - application/x-www-form-urlencode
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(logger("dev"));
@@ -40,6 +40,8 @@ app.get("*", checkAuthentication);
 // Define Routes
 app.use("/auth", require("./routes/auth"));
 app.use("/users", require("./routes/users"));
+app.use("/species", require("./routes/species"));
+app.use("/variety", require("./routes/variety"));
 
 // Page Routers
 app.get("/", (req, res, next) => {
@@ -50,6 +52,28 @@ app.get("/register", notReqAuthentication, (req, res, next) => {
 });
 app.get("/login", notReqAuthentication, (req, res, next) => {
   res.render("login", { layout: "main" });
+});
+app.get("/search", notReqAuthentication, (req, res, next) => {
+  res.render("searchdb", { layout: "main" });
+});
+app.get("/addvariety", reqAuthentication, (req, res, next) => {
+  // Query species from database to display in select dropdown
+  db.Specie.findAll({
+    attributes: ["name", "specieID"],
+  })
+    .then((data) => {
+      console.log(data);
+      res.render("addvariety", { layout: "main", species: data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+app.get("/addspecies", reqAuthentication, (req, res, next) => {
+  res.render("addspecies", { layout: "main" });
+});
+app.get("/treeregister", reqAuthentication, (req, res, next) => {
+  res.render("treeregister", { layout: "main" });
 });
 app.get("/dashboard", reqAuthentication, async (req, res, next) => {
   const token = req.cookies.jwt;

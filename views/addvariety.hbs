@@ -1,0 +1,23 @@
+<h1 class="text-center">Add Variety</h1>
+<div class="container">
+    <form action="/variety/create" method="post">
+    <div class="form-group w-50">
+        <label class="mt-3" for="name">Name of variety</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="e.g. Green Apple">
+
+        <label class="mt-3" for="species">Select Species</label>
+            <select class="form-control" id="species" name="species">
+                {{#each species}}
+                    <option>{{this.dataValues.name}}</option>
+                {{/each}}
+        </select>
+
+        <label class="mt-3" for="genus">Genus</label>
+        <input type="text" class="form-control" id="genus" name="genus"  aria-describedby="emailHelp" placeholder="e.g. Malus pumila">
+
+        <label class="mt-3" for="characteristics">Characteristics</label>
+        <input type="text" class="form-control" id="characteristics"  name="characteristics"  aria-describedby="emailHelp" placeholder="Characteristics">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
