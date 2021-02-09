@@ -29,6 +29,7 @@ app.engine(
     defaultLayout: "main",
     extname: ".hbs",
     layoutsDir: __dirname + "/views/layouts",
+    partialsDir: __dirname + "/views/partials",
   })
 );
 
@@ -42,6 +43,7 @@ app.use("/auth", require("./routes/auth"));
 app.use("/users", require("./routes/users"));
 app.use("/species", require("./routes/species"));
 app.use("/variety", require("./routes/variety"));
+app.use("/search", require("./routes/search"));
 
 // Page Routers
 app.get("/", (req, res, next) => {
@@ -53,7 +55,7 @@ app.get("/register", notReqAuthentication, (req, res, next) => {
 app.get("/login", notReqAuthentication, (req, res, next) => {
   res.render("login", { layout: "main" });
 });
-app.get("/search", notReqAuthentication, (req, res, next) => {
+app.get("/searchdb", (req, res, next) => {
   res.render("searchdb", { layout: "main" });
 });
 app.get("/addvariety", reqAuthentication, (req, res, next) => {
