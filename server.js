@@ -5,6 +5,7 @@ require("dotenv").config();
 const app = express();
 const db = require("./models");
 const jwt = require("jsonwebtoken");
+const moment = require("moment");
 const {
   reqAuthentication,
   notReqAuthentication,
@@ -18,7 +19,7 @@ const logger = require("morgan");
 // parse requests of content-type - application/x-www-form-urlencode
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(logger("dev"));
+// app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static("public"));
 app.set("view engine", "hbs");
@@ -44,6 +45,7 @@ app.use("/users", require("./routes/users"));
 app.use("/species", require("./routes/species"));
 app.use("/variety", require("./routes/variety"));
 app.use("/search", require("./routes/search"));
+app.use("/adminactions", require("./routes/adminactions"));
 
 // Page Routers
 app.get("/", (req, res, next) => {
@@ -101,7 +103,20 @@ app.get("/dashboard", reqAuthentication, async (req, res, next) => {
             if (!docs.dataValues.isAdmin) {
               res.redirect("/");
             } else {
-              res.render("dashboard", { user });
+              // Query database for Varieties that have been submitted, that have not been approved.
+              db.Variety.findAll({
+                where: {
+                  isApproved: null,
+                },
+              })
+                .then((data) => {
+                  // Format Date
+                  console.log("data", data);
+                  res.render("dashboard", { layout: "main", data, user });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             }
           })
           .catch((err) => {
@@ -112,6 +127,44 @@ app.get("/dashboard", reqAuthentication, async (req, res, next) => {
   } else {
     const user = "Unknown";
     res.render("dashboard", { user });
+  }
+});
+
+app.get("/dashboard/viewowners", reqAuthentication, async (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedUser) => {
+      if (err) {
+        console.log(err);
+        next(err);
+      } else {
+        // User.findById(decodedUser.id, (err, docs) => {
+        //   const user = docs.name;
+        //   res.render("dashboard", { user });
+        // });
+
+        const searchId = decodedUser.id;
+        console.log("searchId", searchId);
+        db.User.findByPk(searchId)
+          .then((docs) => {
+            console.log("docs.dv.id:", docs.dataValues.username);
+            const user = docs.dataValues.username;
+            console.log("user: ", user);
+            // if user is not admin redirect
+            if (!docs.dataValues.isAdmin) {
+              res.redirect("/");
+            } else {
+              res.render("viewowners", { layout: "main", user });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  } else {
+    const user = "Unknown";
+    res.render("viewowners", { user });
   }
 });
 
