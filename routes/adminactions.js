@@ -8,6 +8,28 @@ const { reqAuthentication, notReqAuthentication } = require("../config/auth");
 const db = require("../models");
 const { Op } = require("sequelize");
 
+// @route POST /adminactions/getallvarietys
+// @desc RETRIEVE ALL VARIETYS NOT CURRENTLY APPROVED
+// @access Requires login
+router.get("/getallvarietys", reqAuthentication, async (req, res, next) => {
+  db.Variety.findAll({
+    where: {
+      isApproved: null,
+    },
+    include: [{ model: db.Specie, attributes: ["name"] }],
+  })
+    .then((data) => {
+      // Format Date
+      console.log("data", data);
+      // res.render("dashboard", { layout: "main", data, user });
+      // send back to frontend
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // @route POST /adminactions/approve
 // @desc APPROVE AN ID
 // @access ADMIN ONLY
