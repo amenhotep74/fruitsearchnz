@@ -1,0 +1,51 @@
+<div class="m-5">
+    <main class="form-signin ">
+        {{#if msg}}
+        <div class="alert alert-danger" role="alert">
+            {{msg}}
+        </div>
+        {{else}}
+        {{/if}}
+
+        {{#if validationErrors}}
+        {{#each validationErrors}}
+            <div class="alert alert-danger" role="alert">
+                {{this.msg}}
+            </div>
+        {{/each}}
+        {{/if}}
+
+    <form action="/location/create" method="post">
+    <h1 class="text-center">Add a location 🗺️</h1>
+    <div class="form-group">
+        <label class="mt-3" for="name">Name of location</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Location name, name of business">
+
+        <label class="mt-3" for="name">Address</label>
+        <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Address">
+
+        <label class="mt-3" for="province">Province</label>
+            <select class="form-control" id="province" name="province">
+                <option value="Auckland">Auckland</option>
+                <option value="New Plymouth">New Plymouth</option>
+                <option value="Hawke's Bay">Hawke's Bay</option>
+                <option value="Wellington">Wellington</option>
+                <option value="Nelson">Nelson</option>
+                <option value="Marlborough">Marlborough</option>
+                <option value="Westland">Westland</option>
+                <option value="Canterbury">Canterbury</option>
+                <option value="Otago">Otago</option>
+                <option value="Southland">Southland</option>
+        </select>
+
+        <label class="mt-3" for="gpslat">GPS Lat</label>
+        <input type="text" class="form-control" id="gpslat" name="gpslat"  aria-describedby="emailHelp" placeholder="Gps Latitude">
+
+        <label class="mt-3" for="gpslong">GPS Long</label>
+        <input type="text" class="form-control" id="gpslong" name="gpslong"  aria-describedby="emailHelp" placeholder="Gps Longitute">
+
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+</main>
+</div>

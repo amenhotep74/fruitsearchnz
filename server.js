@@ -46,6 +46,9 @@ app.use("/species", require("./routes/species"));
 app.use("/variety", require("./routes/variety"));
 app.use("/search", require("./routes/search"));
 app.use("/adminactions", require("./routes/adminactions"));
+app.use("/owner", require("./routes/owner"));
+app.use("/tree", require("./routes/tree"));
+app.use("/location", require("./routes/location"));
 
 // Page Routers
 app.get("/", (req, res, next) => {
@@ -77,7 +80,24 @@ app.get("/addspecies", reqAuthentication, (req, res, next) => {
   res.render("addspecies", { layout: "main" });
 });
 app.get("/treeregister", reqAuthentication, (req, res, next) => {
-  res.render("treeregister", { layout: "main" });
+  // Query species from database to display in select dropdown
+  db.Variety.findAll({
+    attributes: ["name", "varietyID"],
+  })
+    .then((data) => {
+      console.log(data);
+      res.render("treeregister", { layout: "main", variety: data });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/");
+    });
+});
+app.get("/ownerregister", reqAuthentication, (req, res, next) => {
+  res.render("ownerregister", { layout: "main" });
+});
+app.get("/addlocation", reqAuthentication, (req, res, next) => {
+  res.render("addlocation", { layout: "main" });
 });
 app.get("/dashboard", reqAuthentication, async (req, res, next) => {
   const token = req.cookies.jwt;

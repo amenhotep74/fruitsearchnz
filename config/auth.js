@@ -58,6 +58,7 @@ const checkAuthentication = async (req, res, next) => {
             res.locals.username = docs.dataValues.username;
             res.locals.email = docs.dataValues.email;
             res.locals.isAdmin = docs.dataValues.isAdmin;
+            res.locals.isSuperuser = docs.dataValues.isSuperuser;
             next();
           })
           .catch((err) => {

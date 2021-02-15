@@ -55,7 +55,16 @@
                     {{#if user}}
                     <a class="nav-link btn btn-success mr-1" href="/addspecies">Add Species</a>
                     <a class="nav-link btn btn-success ml-1 mr-1" href="/addvariety">Add Variety</a>
+                    
                     <a class="nav-link btn btn-warning ml-1" href="/treeregister">Tree Register</a>
+                    
+                    {{#if isSuperuser}}
+                        <a class="nav-link btn btn-warning ml-1" href="/addlocation">Add Location</a>
+                    {{/if}}
+                    {{#unless isSuperuser }}
+                        <a class="nav-link btn btn-warning ml-1" href="/ownerregister">Register as Owner</a>
+                    {{/unless}}
+                    
                         <a class="nav-link white_text">
                             <span class="">Welcome, {{username}}</span>
                         </a>
