@@ -49,6 +49,7 @@ app.use("/adminactions", require("./routes/adminactions"));
 app.use("/owner", require("./routes/owner"));
 app.use("/tree", require("./routes/tree"));
 app.use("/location", require("./routes/location"));
+app.use("/source", require("./routes/source"));
 
 // Page Routers
 app.get("/", (req, res, next) => {
@@ -186,6 +187,66 @@ app.get("/dashboard/viewowners", reqAuthentication, async (req, res, next) => {
     const user = "Unknown";
     res.render("viewowners", { user });
   }
+});
+app.get("/researchrecord", reqAuthentication, async (req, res, next) => {
+  // FIND SOURCES THAT ARE NOT REVIEWED FOR CURRENT LOGGED IN USER
+  // PULL USER FROM COOKIES
+  const token = req.cookies.jwt;
+  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
+    if (err) {
+      console.log("There is no token error: ", err.message);
+      res.redirect("/login");
+    } else {
+      // IF VERIFY SUCCESS ALLOW USER TO VISIT PARTICULAR ROUTE
+      console.log("decoded token", decodedToken);
+      const finalToken = decodedToken;
+      const userID = finalToken.id;
+      // RETRIEVE SOURCES WITH THAT USERID
+      db.Source.findAll({
+        where: {
+          userId: userID,
+          isApproved: null,
+        },
+        include: [{ model: db.Variety, attributes: ["name"] }],
+      })
+        .then((notApprovedSources) => {
+          console.log(notApprovedSources);
+          // console.log(notApprovedSources[0].dataValues.Variety.dataValues.name);
+          db.Source.findAll({
+            where: {
+              isApproved: 1,
+            },
+            include: [{ model: db.Variety, attributes: ["name"] }],
+          })
+            .then((approvedSources) => {
+              console.log(approvedSources);
+              res.render("researchrecord", {
+                layout: "main",
+                notApprovedSources: notApprovedSources,
+                approvedSources: approvedSources,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // end of source findall
+    }
+  });
+});
+app.get("/addsource", reqAuthentication, async (req, res, next) => {
+  // Query database for sources
+  db.Variety.findAll()
+    .then((data) => {
+      console.log(data);
+      res.render("addsource", { layout: "main", variety: data });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 const PORT = process.env.PORT || 5000;

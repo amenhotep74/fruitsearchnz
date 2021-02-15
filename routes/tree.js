@@ -69,7 +69,7 @@ router.post("/create", reqAuthentication, async (req, res, next) => {
               })
                 .then((data) => {
                   console.log(data);
-                  res.redirect("/");
+                  res.redirect("/researchrecord");
                 })
                 .catch((err) => {
                   console.log(err);

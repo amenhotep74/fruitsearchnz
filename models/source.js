@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     reference: {
       type: DataTypes.STRING,
     },
+    isApproved: {
+      type: DataTypes.BOOLEAN,
+    },
   });
   return Source;
 };

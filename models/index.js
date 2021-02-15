@@ -78,4 +78,8 @@ Plant.belongsTo(Owner);
 User.hasOne(Owner);
 Owner.belongsTo(User);
 
+// One user has many sources
+User.hasMany(Source);
+Source.belongsTo(User);
+
 module.exports = db;
