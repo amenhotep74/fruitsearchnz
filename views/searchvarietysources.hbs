@@ -6,26 +6,18 @@
               <div class="table-title">
                   <div class="row">
                       <div class="col-sm-6">
-                          <h2><b>Varietys</b></h2>
-                      </div>
-                      <div class="col-sm-6 ">
-                          <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle"></i> <span>Add New Record</span></a>						
+                          <h2><b>Sources for {{varietyname}}</b></h2>
                       </div>
                   </div>
               </div>
               <table class="table table-striped table-hover">
                   <thead>
                       <tr>
-                          <th>
-                              <span class="custom-checkbox">
-                                  <input type="checkbox" id="selectAll">
-                                  <label for="selectAll"></label>
-                              </span>
-                          </th>
-                          <th>Variety ID</th>
+                          <th>Source ID</th>
                           <th>Name</th>
-                          <th>Characteristics</th>
-                          <th>Species Name</th>
+                          <th>Created At</th>
+                          <th>Reference</th>
+                          <th>Approved</th>
                           <th>Actions</th>
                           {{!-- <th>Create At</th>
                           <th>Actions</th> --}}
@@ -34,18 +26,13 @@
                   <tbody>
                       {{#each data}}
                       <tr>
+                          <td>{{this.dataValues.sourceID}}</td>
+                          <td>{{this.dataValues.sourcename}}</td>
+                          <td>{{this.dataValues.createdAt}}</td>
+                          <td>{{this.dataValues.reference}}</td>
+                          <td>{{this.dataValues.isApproved}}</td>
                           <td>
-                              <span class="custom-checkbox">
-                                  <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                  <label for="checkbox1"></label>
-                              </span>
-                          </td>
-                          <td>{{this.dataValues.varietyID}}</td>
-                          <td>{{this.dataValues.name}}</td>
-                          <td>{{this.dataValues.characteristics}}</td>
-                          <td>{{this.dataValues.Specie.dataValues.name}}</td>
-                          <td>
-                              <a href="/variety/tree/{{this.dataValues.varietyID}}" class="btn btn-primary" >View All Trees</a>
+                              <a href="" class="btn btn-primary" >View All Trees</a>
                               <a href="/variety/sources/{{this.dataValues.varietyID}}" class="btn btn-success">View Sources</a>
                           </td>
                       </tr>

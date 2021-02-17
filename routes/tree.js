@@ -32,7 +32,7 @@ router.post("/create", reqAuthentication, async (req, res, next) => {
         },
       })
         .then((location) => {
-          console.log(location);
+          console.log("LOCATION", location);
           const locationID = location[0].dataValues.locationID;
 
           // PULL USER FROM COOKIES
@@ -69,7 +69,7 @@ router.post("/create", reqAuthentication, async (req, res, next) => {
               })
                 .then((data) => {
                   console.log(data);
-                  res.redirect("/researchrecord");
+                  res.redirect("/");
                 })
                 .catch((err) => {
                   console.log(err);

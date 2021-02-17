@@ -248,6 +248,56 @@ app.get("/addsource", reqAuthentication, async (req, res, next) => {
       console.log(err);
     });
 });
+app.get("/variety/sources/:id", reqAuthentication, async (req, res, next) => {
+  // Get ID of variety from button.
+  console.log(req.params.id);
+  // Search database with that ID to retrieve all sources that have that id
+  db.Source.findAll({
+    where: {
+      VarietyVarietyID: req.params.id,
+    },
+    include: [{ model: db.Variety, attributes: ["name"] }],
+  })
+    .then((data) => {
+      const varietyname = data[0].dataValues.Variety.name;
+      // Success Render Data
+      res.render("searchvarietysources", {
+        layout: "main",
+        data: data,
+        varietyname: varietyname,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+app.get("/variety/tree/:id", reqAuthentication, async (req, res, next) => {
+  // Get ID of variety from button.
+  console.log(req.params.id);
+  // Search database with that ID to retrieve all sources that have that id
+  db.Plant.findAll({
+    where: {
+      VarietyVarietyID: req.params.id,
+    },
+    include: [
+      { model: db.Location, attributes: ["province"] },
+      { model: db.Variety, attributes: ["name"] },
+    ],
+  })
+    .then((data) => {
+      console.log(data);
+      const varietyname = data[0].dataValues.Variety.name;
+      // Success Render Data
+      res.render("searchtreesofvariety", {
+        layout: "main",
+        data: data,
+        varietyname: varietyname,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 const PORT = process.env.PORT || 5000;
 

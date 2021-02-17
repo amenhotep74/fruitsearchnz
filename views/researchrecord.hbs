@@ -24,7 +24,6 @@
                           <th>Source Name</th>
                           <th>Reference</th>
                           <th>Actions</th>
-
                       </tr>
                   </thead>
                   <tbody>
@@ -32,7 +31,7 @@
                       <tr>
                           <td>{{this.dataValues.sourceID}}</td>
                           <td>{{this.dataValues.Variety.dataValues.name}}</td>
-                          <td>{{this.dataValues.date}}</td>
+                          <td>{{this.dataValues.createdAt}}</td>
                           <td>{{this.dataValues.sourcename}}</td>
                           <td>{{this.dataValues.reference}}</td>
                           <td>
@@ -69,7 +68,6 @@
                           <th>Date</th>
                           <th>Source Name</th>
                           <th>Reference</th>
-                          <th>Actions</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -77,13 +75,9 @@
                       <tr>
                           <td>{{this.dataValues.sourceID}}</td>
                           <td>{{this.dataValues.Variety.dataValues.name}}</td>
-                          <td>{{this.dataValues.date}}</td>
+                          <td>{{this.dataValues.createdAt}}</td>
                           <td>{{this.dataValues.sourcename}}</td>
                           <td>{{this.dataValues.reference}}</td>
-                          <td>
-                              <a class="btn btn-success">Edit</a>
-                              <a class="btn btn-danger">Delete</a>
-                          </td>
                       </tr>
                       {{/each}}
                   </tbody>

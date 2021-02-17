@@ -51,6 +51,78 @@ router.get("/getallspecies", reqAuthentication, async (req, res, next) => {
     });
 });
 
+// @route POST /adminactions/getallowners
+// @desc RETRIEVE ALL THE OWNERS
+// @access Requires login
+router.get("/getallowners", reqAuthentication, async (req, res, next) => {
+  db.Owner.findAll()
+    .then((data) => {
+      // Format Date
+      console.log("data", data);
+      // send back to frontend
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// @route POST /adminactions/getallowners
+// @desc RETRIEVE ALL THE USERS
+// @access Requires login
+router.get("/getallusers", reqAuthentication, async (req, res, next) => {
+  db.User.findAll()
+    .then((data) => {
+      // Format Date
+      console.log("data", data);
+      // send back to frontend
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// @route POST /adminactions/getalladmins
+// @desc RETRIEVE ALL THE ADMINS
+// @access Requires login
+router.get("/getalladmins", reqAuthentication, async (req, res, next) => {
+  db.User.findAll({
+    where: {
+      isAdmin: 1,
+    },
+  })
+    .then((data) => {
+      // Format Date
+      console.log("data", data);
+      // send back to frontend
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// @route POST /adminactions/promotetoadmin
+// @desc PROMOTE USER TO ADMIN
+// @access ADMIN ONLY
+router.post("/promotetoadmin", reqAuthentication, async (req, res, next) => {
+  db.User.update(
+    { isAdmin: 1 },
+    {
+      where: {
+        id: req.body.id,
+      },
+    }
+  )
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // @route POST /adminactions/approve
 // @desc APPROVE AN ID
 // @access ADMIN ONLY

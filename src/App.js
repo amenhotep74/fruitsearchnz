@@ -4,6 +4,9 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ApproveVariety from "./ApproveVarietys";
 import ApproveSpecies from "./ApproveSpecies";
+import ViewOwners from "./ViewOwners";
+import ViewUsers from "./ViewUsers";
+import CurrentAdmins from "./CurrentAdmins";
 
 const App = () => {
   return (
@@ -12,8 +15,8 @@ const App = () => {
         <div class="container-fluid">
           <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-              <div class="sidebar-sticky">
-                <ul class="nav flex-column">
+              <div class="sidebar-sticky d-flex">
+                <ul class="nav flex-column justify-content-center d-flex">
                   <li class="nav-item bg-light">
                     <Link
                       class="nav-link"
@@ -51,50 +54,6 @@ const App = () => {
                       View Users
                     </Link>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      Reports
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <span data-feather="layers"></span>
-                      Integrations
-                    </a>
-                  </li>
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                  <span>Saved reports</span>
-                  <a class="d-flex align-items-center text-muted" href="#">
-                    <span data-feather="plus-circle"></span>
-                  </a>
-                </h6>
-                <ul class="nav flex-column mb-2">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <span data-feather="file-text"></span>
-                      Current month
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <span data-feather="file-text"></span>
-                      Last quarter
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <span data-feather="file-text"></span>
-                      Social engagement
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <span data-feather="file-text"></span>
-                      Year-end sale
-                    </a>
-                  </li>
                 </ul>
               </div>
             </nav>
@@ -106,6 +65,15 @@ const App = () => {
               </Route>
               <Route path="/dashboard/approvespecies">
                 <ApproveSpecies />
+              </Route>
+              <Route path="/dashboard/viewowners">
+                <ViewOwners />
+              </Route>
+              <Route path="/dashboard/viewusers">
+                <ViewUsers />
+              </Route>
+              <Route path="/dashboard/currentadmins">
+                <CurrentAdmins />
               </Route>
             </Switch>
           </div>
