@@ -16,13 +16,13 @@
         {{/if}}
 
     <form action="/owner/create" method="post">
-    <h1 class="text-center">Register as an owner</h1>
+    <h1 class="text-center">Owner Register</h1>
     <div class="form-group">
         <label class="mt-3" for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Location name, name of business">
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Location name, name of business" required>
 
         <label class="mt-3" for="name">Address</label>
-        <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Address">
+        <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Address" required>
 
         <label class="mt-3" for="province">Province</label>
             <select class="form-control" id="province" name="province">
@@ -38,11 +38,11 @@
                 <option value="Southland">Southland</option>
         </select>
 
-        <label class="mt-3" for="website">Website</label>
+        <label class="mt-3" for="website">Website (optional)</label>
         <input type="text" class="form-control" id="website" name="website"  aria-describedby="emailHelp" placeholder="Website URL">
 
         <label class="mt-3" for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone"  name="phone"  aria-describedby="emailHelp" placeholder="Phone number">
+        <input type="text" class="form-control" id="phone"  name="phone"  aria-describedby="emailHelp" placeholder="Phone number" required>
     </div>
     <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>

@@ -10,42 +10,59 @@ const db = require("../models");
 // @route POST /variety/create
 // @desc CREATE VARIETY
 // @access Requires login
-router.post("/create", reqAuthentication, async (req, res, next) => {
-  console.log(req.body.name);
-  console.log(req.body.species);
-  console.log(req.body.genus);
-  console.log(req.body.description);
-  // Query and get ID from species with value from select
-  db.Specie.findAll({
-    attributes: ["specieID"],
-    where: {
-      name: req.body.species,
-    },
-  })
-    .then((data) => {
-      //   console.log("Specie Found: ", data);
-      const foundSpecieID = data[0].dataValues.specieID;
-      console.log(foundSpecieID);
+router.post(
+  "/create",
+  check("name", "Please include a valid email.").not().isEmpty(),
+  check("species", "Species is required").not().isEmpty(),
+  check("genus", "Genus is required").not().isEmpty(),
+  check("characteristics", "Characteristics is required").not().isEmpty(),
+  reqAuthentication,
+  async (req, res, next) => {
+    const validationErrors = validationResult(req);
+    let errors = "";
+    if (!validationErrors.isEmpty()) {
+      // console.log("validation errors", validationErrors);
+      return res.render("addvariety", {
+        validationErrors: validationErrors.array(),
+      });
+    }
 
-      // Save fields to database
-      db.Variety.create({
-        name: req.body.name,
-        characteristics: req.body.characteristics,
-        genus: req.body.genus,
-        // Foreign Key
-        SpecieSpecieID: foundSpecieID,
-      })
-        .then((variety) => {
-          console.log("Variety", variety);
-          res.redirect("/");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    // Query and get ID from species with value from select
+    db.Specie.findAll({
+      attributes: ["specieID"],
+      where: {
+        name: req.body.species,
+      },
     })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+      .then((data) => {
+        //   console.log("Specie Found: ", data);
+        const foundSpecieID = data[0].dataValues.specieID;
+        console.log(foundSpecieID);
+
+        // Save fields to database
+        db.Variety.create({
+          name: req.body.name,
+          characteristics: req.body.characteristics,
+          genus: req.body.genus,
+          // Foreign Key
+          SpecieSpecieID: foundSpecieID,
+        })
+          .then((variety) => {
+            console.log("Variety", variety);
+            res.redirect("/");
+          })
+          .catch((error) => {
+            console.log(error);
+            errors = "There was an error try again.";
+            return res.render("addvariety", { msg: errors });
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        errors = "There was an error try again.";
+        return res.render("addvariety", { msg: errors });
+      });
+  }
+);
 
 module.exports = router;

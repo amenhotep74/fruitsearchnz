@@ -52,6 +52,7 @@ const {
   Plant,
   User,
   Source,
+  Volunteer,
 } = sequelize.models;
 
 // One species has many varietys

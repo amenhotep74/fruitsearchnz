@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -40,11 +39,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/searchdb">Search Database</a>
                     </li>
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link" href="/heritagefruit">Heritage Fruit</a>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Heritage Fruit</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Volunteer</a>
+                        <a class="nav-link" href="/volunteer">Volunteer</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/researchrecord">Research Record</a>
@@ -53,16 +52,16 @@
                 <div class="d-flex">
                     <!-- Login Register Links -->
                     {{#if user}}
-                    <a class="nav-link btn btn-success mr-1" href="/addspecies">Add Species</a>
-                    <a class="nav-link btn btn-success ml-1 mr-1" href="/addvariety">Add Variety</a>
+                    <a class="nav-link btn btn-success mr-1 ml-1" href="/addspecies">Add Species</a>
+                    <a class="nav-link btn btn-success mr-1 ml-1" href="/addvariety">Add Variety</a>
                     
-                    <a class="nav-link btn btn-warning ml-1" href="/treeregister">Tree Register</a>
+                    <a class="nav-link btn btn-warning mr-1 ml-1" href="/treeregister">Tree Register</a>
                     
-                    {{#if isSuperuser}}
-                        <a class="nav-link btn btn-warning ml-1" href="/addlocation">Add Location</a>
+                    {{#if isOwner}}
+                        <a class="nav-link btn btn-warning mr-1 ml-1" href="/addlocation">Add Location</a>
                     {{/if}}
-                    {{#unless isSuperuser }}
-                        <a class="nav-link btn btn-warning ml-1" href="/ownerregister">Register as Owner</a>
+                    {{#unless isOwner }}
+                        <a class="nav-link btn btn-warning mr-1 ml-1" href="/ownerregister">Register as Owner</a>
                     {{/unless}}
                     
                         <a class="nav-link white_text">
@@ -81,18 +80,11 @@
             </div>
         </div>
     </nav>
-    {{!-- {{#if user}}
-    <p>{{id}}</p>
-    <p>Welcome, {{username}}</p>
-        <p>email: {{email}}</p>
-        <p>isAdmin: {{isAdmin}}</p>
-    {{else}}
-    <p>NO USER</p>
-    {{/if}} --}}
     
     {{{body}}}
 
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <footer class="footer mt-auto py-3 bg-light border-top">
+    <div class="container">
     <div class="row">
       <div class="col-12 col-md">
         <small class="d-block mb-3 text-muted">&copy; 2017–2021</small>
@@ -120,6 +112,7 @@
           <li><a class="link-secondary" href="#">Register</a></li>
         </ul>
       </div>
+    </div>
     </div>
   </footer>
     <!-- Optional JavaScript; choose one of the two! -->

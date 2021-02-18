@@ -94,9 +94,72 @@ router.post(
   }
 );
 
-// @route POST /users/forgotpassword
-// @desc Forgot password form submission
+// @route POST /users/volunteer/submit
+// @desc Submit Volunteer
 // @access Private
-router.post("/", async (req, res) => {});
+router.post(
+  "/volunteer/submit",
+  check("firstname", "First name must not empty.").not().isEmpty(),
+  check("lastname", "Last name must not empty.").not().isEmpty(),
+  check("address", "Address must not empty.").not().isEmpty(),
+  check("province", "Province must not empty.").not().isEmpty(),
+  check("country", "Country must not empty.").not().isEmpty(),
+  check("skills", "Skills must not empty.").not().isEmpty(),
+  check("experience", "Experience must not empty.").not().isEmpty(),
+  reqAuthentication,
+  async (req, res, next) => {
+    const validationErrors = validationResult(req);
+    let errors = "";
+    if (!validationErrors.isEmpty()) {
+      // console.log("validation errors", validationErrors);
+      return res.render("treeregister", {
+        validationErrors: validationErrors.array(),
+      });
+    }
+
+    console.log(req.body);
+    // Submit to change volunteerSubmissionActive to true which will make it appear on admin dashboard
+    // Verify User
+    const token = req.cookies.jwt;
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
+      if (err) {
+        console.log("There is no token error: ", err.message);
+        res.redirect("/login");
+      } else {
+        // IF VERIFY SUCCESS ALLOW USER TO VISIT PARTICULAR ROUTE
+        console.log("decoded token", decodedToken);
+        const finalToken = decodedToken;
+        const userID = finalToken.id;
+
+        db.User.update(
+          {
+            volunteerSubmissionActive: 1,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            province: req.body.province,
+            country: req.body.country,
+            skills: req.body.skills,
+            experience: req.body.experience,
+          },
+          {
+            where: {
+              id: userID,
+            },
+          }
+        )
+          .then((data) => {
+            console.log(data);
+            console.log("USERID", userID);
+            res.redirect("/");
+          })
+          .catch((err) => {
+            console.log(err);
+            return res.render("/volunteer", { msg: errors });
+          });
+      }
+    });
+  }
+);
 
 module.exports = router;

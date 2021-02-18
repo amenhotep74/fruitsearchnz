@@ -18,11 +18,19 @@ router.post(
     check("name", "Name is required").not().isEmpty(),
     check("address", "Please include an Address.").not().isEmpty(),
     check("province", "Please select a province.").not().isEmpty(),
-    check("website", "Please include a website.").not().isEmpty(),
     check("phone", "Please include a phone number.").not().isEmpty(),
   ],
   reqAuthentication,
   async (req, res) => {
+    const validationErrors = validationResult(req);
+    let errors = "";
+    if (!validationErrors.isEmpty()) {
+      // console.log("validation errors", validationErrors);
+      return res.render("ownerregister", {
+        validationErrors: validationErrors.array(),
+      });
+    }
+
     // pull user from browser
     const token = req.cookies.jwt;
     jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decodedToken) => {
@@ -54,7 +62,7 @@ router.post(
             // Set user to superuser once registered as owner
             db.User.update(
               {
-                isSuperuser: 1,
+                isOwner: 1,
               },
               {
                 where: {
@@ -68,12 +76,14 @@ router.post(
               })
               .catch((err) => {
                 console.log(err);
-                res.redirect("/ownerregister");
+                errors = "There was an error try again.";
+                return res.render("ownerregister", { msg: errors });
               });
           })
           .catch((error) => {
             console.log(error);
-            res.redirect("/ownerregister");
+            errors = "There was an error try again.";
+            return res.render("ownerregister", { msg: errors });
           });
       }
     });

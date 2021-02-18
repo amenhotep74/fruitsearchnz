@@ -103,6 +103,28 @@ router.get("/getalladmins", reqAuthentication, async (req, res, next) => {
     });
 });
 
+//@route GET /adminactions/getallvolunteers
+// @desc RETRIEVE ALL THE VOLUNTERS WHERE SUBMISSION IS ACTIVE
+// @access Requires login
+router.get("/getallvolunteers", reqAuthentication, async (req, res, next) => {
+  db.User.findAll({
+    where: {
+      volunteerSubmissionActive: 1,
+    },
+  })
+    .then((data) => {
+      console.log(data);
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// @route POST /adminactions/promotetoadmin
+// @desc PROMOTE USER TO ADMIN
+// @access ADMIN ONLY
+
 // @route POST /adminactions/promotetoadmin
 // @desc PROMOTE USER TO ADMIN
 // @access ADMIN ONLY
@@ -237,4 +259,63 @@ router.post("/species/reject", reqAuthentication, async (req, res, next) => {
     });
 });
 
+// /volunteers/approve
+// @desc Volunteer approve
+// @access ADMIN ONLY
+router.post(
+  "/volunteers/approve",
+  reqAuthentication,
+  async (req, res, next) => {
+    // Retrieve ID
+    console.log(req.body);
+
+    // Search USERS for id AND UPDATE
+    db.User.update(
+      {
+        volunteerSubmissionActive: null,
+        isVolunteer: 1,
+      },
+      {
+        where: {
+          id: req.body.id,
+        },
+      }
+    )
+      .then((data) => {
+        console.log(data);
+        res.json({ msg: "Created" });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
+
+// /volunteers/reject
+// @desc Volunteer approve
+// @access ADMIN ONLY
+router.post("/volunteers/reject", reqAuthentication, async (req, res, next) => {
+  // Retrieve ID
+  console.log(req.body);
+
+  // Search USERS for id AND UPDATE
+  db.User.update(
+    {
+      volunteerSubmissionActive: 0,
+      isVolunteer: 0,
+    },
+    {
+      where: {
+        id: req.body.id,
+      },
+    }
+  )
+    .then((data) => {
+      console.log(data);
+      res.json({ msg: "Rejected successfully" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 module.exports = router;

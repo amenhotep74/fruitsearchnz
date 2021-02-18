@@ -298,7 +298,12 @@ app.get("/variety/tree/:id", reqAuthentication, async (req, res, next) => {
       console.log(err);
     });
 });
-
+app.get("/heritagefruit", async (req, res, next) => {
+  res.render("heritagefruit");
+});
+app.get("/volunteer", async (req, res, next) => {
+  res.render("volunteer");
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

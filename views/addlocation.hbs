@@ -16,16 +16,16 @@
         {{/if}}
 
     <form action="/location/create" method="post">
-    <h1 class="text-center">Add a location 🗺️</h1>
+    <h1 class="text-center">Add a location</h1>
     <div class="form-group">
         <label class="mt-3" for="name">Name of location</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Location name, name of business">
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Location name, name of business" required>
 
         <label class="mt-3" for="name">Address</label>
-        <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Address">
+        <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Address" required>
 
         <label class="mt-3" for="province">Province</label>
-            <select class="form-control" id="province" name="province">
+            <select class="form-control" id="province" name="province" required>
                 <option value="Auckland">Auckland</option>
                 <option value="New Plymouth">New Plymouth</option>
                 <option value="Hawke's Bay">Hawke's Bay</option>
@@ -38,11 +38,11 @@
                 <option value="Southland">Southland</option>
         </select>
 
-        <label class="mt-3" for="gpslat">GPS Lat</label>
+        <label class="mt-3" for="gpslat">GPS Lat (optional)</label>
         <input type="text" class="form-control" id="gpslat" name="gpslat"  aria-describedby="emailHelp" placeholder="Gps Latitude">
 
-        <label class="mt-3" for="gpslong">GPS Long</label>
-        <input type="text" class="form-control" id="gpslong" name="gpslong"  aria-describedby="emailHelp" placeholder="Gps Longitute">
+        <label class="mt-3" for="gpslong">GPS Long (optional)</label>
+        <input type="text" class="form-control" id="gpslong" name="gpslong"  aria-describedby="emailHelp" placeholder="Gps Longitude">
 
     </div>
     <button type="submit" class="btn btn-primary w-100">Submit</button>

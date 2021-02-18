@@ -1,15 +1,32 @@
-<h1 class="text-center">Add Species</h1>
+<h1 class="text-center mt-3">Add Species</h1>
 <div class="container">
+
+    {{#if msg}}
+        <div class="alert alert-danger" role="alert">
+            {{msg}}
+        </div>
+        {{else}}
+    {{/if}}
+
+    {{#if validationErrors}}
+        {{#each validationErrors}}
+            <div class="alert alert-danger" role="alert">
+                {{this.msg}}
+            </div>
+        {{/each}}
+    {{/if}}
+
+
     <form action="/species/create" method="post">
     <div class="form-group w-50">
         <label class="mt-3" for="name">Name of species</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="e.g. Apple, Banana">
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="e.g. Apple, Banana" required>
 
         <label class="mt-3" for="genus">Genus</label>
-        <input type="text" class="form-control" id="genus" name="genus"  aria-describedby="emailHelp" placeholder="e.g. Malus pumila">
+        <input type="text" class="form-control" id="genus" name="genus"  aria-describedby="emailHelp" placeholder="e.g. Malus pumila" required>
 
         <label class="mt-3" for="description">Description</label>
-        <input type="text" class="form-control" id="description"  name="description"  aria-describedby="emailHelp" placeholder="Description">
+        <input type="text" class="form-control" id="description"  name="description"  aria-describedby="emailHelp" placeholder="Description" required>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>

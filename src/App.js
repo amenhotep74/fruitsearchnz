@@ -7,6 +7,7 @@ import ApproveSpecies from "./ApproveSpecies";
 import ViewOwners from "./ViewOwners";
 import ViewUsers from "./ViewUsers";
 import CurrentAdmins from "./CurrentAdmins";
+import ApproveVolunteers from "./ApproveVolunteers";
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
               <div class="sidebar-sticky d-flex">
                 <ul class="nav flex-column justify-content-center d-flex">
-                  <li class="nav-item bg-light">
+                  <li class="nav-item">
                     <Link
                       class="nav-link"
                       activeClassName="nav-link secondary text-dark"
@@ -54,6 +55,11 @@ const App = () => {
                       View Users
                     </Link>
                   </li>
+                  <li class="nav-item">
+                    <Link class="nav-link" to="/dashboard/approvevolunteers">
+                      Approve Volunteers
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </nav>
@@ -74,6 +80,9 @@ const App = () => {
               </Route>
               <Route path="/dashboard/currentadmins">
                 <CurrentAdmins />
+              </Route>
+              <Route path="/dashboard/approvevolunteers">
+                <ApproveVolunteers />
               </Route>
             </Switch>
           </div>
