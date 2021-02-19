@@ -1,4 +1,18 @@
 <div class="container p-5">
+    {{#if msg}}
+        <div class="alert alert-danger" role="alert">
+            {{msg}}
+        </div>
+    {{else}}
+    {{/if}}
+
+    {{#if successmsg}}
+        <div class="alert alert-success" role="alert">
+            {{this.successmsg}}
+        </div>
+    {{else}}
+    {{/if}}
+
     <form action="/api/csv/upload" method="POST" enctype="multipart/form-data">
         <label for="formFile" class="form-label">
         Upload Species CSV

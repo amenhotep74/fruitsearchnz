@@ -5,17 +5,12 @@ const upload = require("../middleware/upload");
 const { reqAuthentication, notReqAuthentication } = require("../config/auth");
 
 let routes = (app) => {
-  router.post(
-    "/upload",
-    reqAuthentication,
-    upload.single("file"),
-    csvController.upload
-  );
+  router.post("/upload", upload.single("file"), csvController.upload);
   router.get("/tutorials", reqAuthentication, csvController.getTutorials);
 
   router.get("/download", reqAuthentication, csvController.download);
 
-  app.use("/api/csv", reqAuthentication, router);
+  app.use("/api/csv", router);
 };
 
 module.exports = routes;

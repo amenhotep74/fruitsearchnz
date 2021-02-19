@@ -310,7 +310,7 @@ app.get("/volunteer", async (req, res, next) => {
   res.render("volunteer");
 });
 
-app.get("/uploadspecies", async (req, res, next) => {
+app.get("/uploadspecies", reqAuthentication, async (req, res, next) => {
   res.render("uploadspecies");
 });
 const PORT = process.env.PORT || 5000;

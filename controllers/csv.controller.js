@@ -7,9 +7,13 @@ const CsvParser = require("json2csv").Parser;
 
 // UPLOAD CSV
 const upload = async (req, res) => {
+  let errors = "";
+  let successmsg = "";
   try {
     if (req.file == undefined) {
-      return res.status(400).send("Please upload a CSV file!");
+      errors = "Please upload a CSV file!";
+      return res.render("uploadspecies", { msg: errors });
+      // return res.status(400).send("Please upload a CSV file!");
     }
 
     let tutorials = [];
@@ -19,7 +23,8 @@ const upload = async (req, res) => {
     fs.createReadStream(path)
       .pipe(csv.parse({ headers: true }))
       .on("error", (error) => {
-        throw error.message;
+        // throw error.message;
+        return res.render("uploadspecies", { msg: error });
       })
       .on("data", (row) => {
         tutorials.push(row);
@@ -27,23 +32,29 @@ const upload = async (req, res) => {
       .on("end", () => {
         db.Specie.bulkCreate(tutorials)
           .then(() => {
-            res.status(200).send({
-              message:
-                "Uploaded the file successfully: " + req.file.originalname,
-            });
+            // res.status(200).send({
+            //   message:
+            //     "Uploaded the file successfully: " + req.file.originalname,
+            // });
+            // IF SUCCESS
+            successmsg = "Uploaded the file successfully!";
+            return res.render("uploadspecies", { successmsg: successmsg });
           })
           .catch((error) => {
-            res.status(500).send({
-              message: "Fail to import data into database!",
-              error: error.message,
-            });
+            // res.status(500).send({
+            //   message: "Fail to import data into database!",
+            //   error: error.message,
+            // });
+            error = "Failed to import data into database!";
+            return res.render("uploadspecies", { msg: error });
           });
       });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      message: "Could not upload the file: " + req.file.originalname,
-    });
+    // res.status(500).send({
+    //   message: "Could not upload the file: " + req.file.originalname,
+    // });
+    return res.render("uploadspecies", { msg: error });
   }
 };
 
