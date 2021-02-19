@@ -8,6 +8,7 @@ import ViewOwners from "./ViewOwners";
 import ViewUsers from "./ViewUsers";
 import CurrentAdmins from "./CurrentAdmins";
 import ApproveVolunteers from "./ApproveVolunteers";
+import UploadCSVS from "./uploadCSVS";
 
 const App = () => {
   return (
@@ -56,9 +57,29 @@ const App = () => {
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to="/dashboard/approvevolunteers">
+                    <Link class="nav-link" to="/approvevolunteers">
                       Approve Volunteers
                     </Link>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/uploadspecies">
+                      Upload Species CSV
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/uploadspecies">
+                      Upload Volunteers CSV
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/uploadspecies">
+                      Upload Locations CSV
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/uploadspecies">
+                      Upload Trees CSV
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -83,6 +104,9 @@ const App = () => {
               </Route>
               <Route path="/dashboard/approvevolunteers">
                 <ApproveVolunteers />
+              </Route>
+              <Route path="/dashboard/uploadcsv">
+                <UploadCSVS />
               </Route>
             </Switch>
           </div>

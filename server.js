@@ -13,11 +13,16 @@ const {
 } = require("./config/auth");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const initRoutes = require("./routes/csv.routes");
+
+global.__basedir = __dirname;
+
 // app.use(cors());
 // parse requests of content-type - application/json
 
 // parse requests of content-type - application/x-www-form-urlencode
 app.use(express.urlencoded({ extended: true }));
+initRoutes(app);
 app.use(cookieParser());
 // app.use(logger("dev"));
 app.use(express.json());
@@ -303,6 +308,10 @@ app.get("/heritagefruit", async (req, res, next) => {
 });
 app.get("/volunteer", async (req, res, next) => {
   res.render("volunteer");
+});
+
+app.get("/uploadspecies", async (req, res, next) => {
+  res.render("uploadspecies");
 });
 const PORT = process.env.PORT || 5000;
 
