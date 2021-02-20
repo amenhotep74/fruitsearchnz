@@ -1,0 +1,28 @@
+<div class="container p-5">
+    {{#if msg}}
+        <div class="alert alert-danger" role="alert">
+            {{msg}}
+        </div>
+    {{else}}
+    {{/if}}
+
+    {{#if successmsg}}
+        <div class="alert alert-success" role="alert">
+            {{this.successmsg}}
+        </div>
+    {{else}}
+    {{/if}}
+
+    <form action="/api/csv//upload/varietys" method="POST" enctype="multipart/form-data">
+        <label for="formFile" class="form-label">
+        Upload Varietys CSV
+        </label>
+        <input
+        class="form-control mb-3"
+        type="file"
+        id="file"
+        name="file"
+        />
+        <input type="submit" class="btn btn-primary" value-"Submit" />
+    </form>
+</div>

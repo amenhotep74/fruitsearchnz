@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     blossomdate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
     },
     age: {
       type: DataTypes.INTEGER,

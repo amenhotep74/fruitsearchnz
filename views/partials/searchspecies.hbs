@@ -6,7 +6,11 @@
               <div class="table-title">
                   <div class="row">
                       <div class="col-sm-6">
-                          <h2><b>Varietys</b></h2>
+                          {{#if nodata}}
+                            <h2>{{nodata}}</h2>
+                            {{else}}
+                            <h2><b>Varietys for species: {{speciesname}}</b></h2>
+                          {{/if}}
                       </div>
                   </div>
               </div>
@@ -22,7 +26,7 @@
                           <th>Variety ID</th>
                           <th>Name</th>
                           <th>Characteristics</th>
-                          <th>Species Name</th>
+                          <th>Species ID</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -38,10 +42,6 @@
                           <td>{{this.dataValues.name}}</td>
                           <td>{{this.dataValues.characteristics}}</td>
                           <td>{{this.dataValues.SpecieSpecieID}}</td>
-                          <td>
-                              <a class="btn btn-success">Edit</a>
-                              <a class="btn btn-danger">Delete</a>
-                          </td>
                       </tr>
                       {{/each}}
                   </tbody>

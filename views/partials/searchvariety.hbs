@@ -6,7 +6,12 @@
               <div class="table-title">
                   <div class="row">
                       <div class="col-sm-6">
-                          <h2><b>Varietys</b></h2>
+                          {{#if nodata}}
+                            <h2>{{nodata}}</h2>
+                            {{else}}
+                            <h2><b>Varietys</b></h2>
+                          {{/if}}
+                          
                       </div>
                   </div>
               </div>

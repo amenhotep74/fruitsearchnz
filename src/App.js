@@ -67,17 +67,17 @@ const App = () => {
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/uploadspecies">
-                      Upload Volunteers CSV
+                    <a class="nav-link" href="/uploadvarieties">
+                      Upload Varieties CSV
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/uploadspecies">
+                    <a class="nav-link" href="/uploadlocations">
                       Upload Locations CSV
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/uploadspecies">
+                    <a class="nav-link" href="/uploadtrees">
                       Upload Trees CSV
                     </a>
                   </li>

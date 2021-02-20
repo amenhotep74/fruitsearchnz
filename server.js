@@ -313,6 +313,17 @@ app.get("/volunteer", async (req, res, next) => {
 app.get("/uploadspecies", reqAuthentication, async (req, res, next) => {
   res.render("uploadspecies");
 });
+
+app.get("/uploadvarieties", reqAuthentication, async (req, res, next) => {
+  res.render("uploadvarietys");
+});
+
+app.get("/uploadlocations", reqAuthentication, async (req, res, next) => {
+  res.render("uploadlocations");
+});
+app.get("/uploadtrees", reqAuthentication, async (req, res, next) => {
+  res.render("uploadplants");
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
