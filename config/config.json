@@ -9,14 +9,14 @@
     "logging": false
   },
   "test": {
-    "username": "be0dda2dfec86",
+    "username": "be0dda2dfec866",
     "password": "56ab9c16",
     "database": "heroku_0700efea66f1eef",
     "host": "us-cdbr-east-03.cleardb.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "be0dda2dfec86",
+    "username": "be0dda2dfec866",
     "password": "56ab9c16",
     "database": "heroku_0700efea66f1eef",
     "host": "us-cdbr-east-03.cleardb.com",
