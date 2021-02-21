@@ -44,9 +44,11 @@
                         <a class="nav-link" href="/researchrecord">Research Record</a>
                     </li>
                     {{else}}
-                    <li class="nav-item">
-                            <a class="nav-link" href="/volunteer">Volunteer</a>
-                    </li>
+                      {{#if user}}
+                        <li class="nav-item">
+                                <a class="nav-link" href="/volunteer">Volunteer</a>
+                        </li>
+                      {{/if}}
                     {{/if}}
                 </ul>
                 <div class="d-flex">
@@ -87,29 +89,26 @@
     <div class="container">
     <div class="row">
       <div class="col-12 col-md">
-        <small class="d-block mb-3 text-muted">&copy; 2017–2021</small>
+        <small class="d-block mb-3 text-muted">&copy; FruitsearchNZ 2021</small>
       </div>
       <div class="col-6 col-md">
         <h5>Features</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="#">Home</a></li>
-          <li><a class="link-secondary" href="#">Search Database</a></li>
-          <li><a class="link-secondary" href="#">Heritage Fruit</a></li>
-          <li><a class="link-secondary" href="#">Volunteer</a></li>
-          <li><a class="link-secondary" href="#">Research Record</a></li>
+          <li><a class="link-secondary" href="/">Home</a></li>
+          <li><a class="link-secondary" href="/searchdb">Search Database</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
         <h5>Resources</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="#">Privacy</a></li>
+          <li><a class="link-secondary" href="/privacypolicy">Privacy</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
         <h5>Quick Links</h5>
         <ul class="list-unstyled text-small">
-          <li><a class="link-secondary" href="#">Login</a></li>
-          <li><a class="link-secondary" href="#">Register</a></li>
+          <li><a class="link-secondary" href="/login">Login</a></li>
+          <li><a class="link-secondary" href="/register">Register</a></li>
         </ul>
       </div>
     </div>
