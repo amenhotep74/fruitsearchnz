@@ -9,19 +9,17 @@
     "logging": false
   },
   "test": {
-    "username": "root",
-    "password": "Apache07#",
-    "database": "fruitregister",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3306"
+    "username": "be0dda2dfec86",
+    "password": "56ab9c16",
+    "database": "heroku_0700efea66f1eef",
+    "host": "us-cdbr-east-03.cleardb.com",
+    "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "Apache07#",
-    "database": "fruitregister",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": "3306"
+    "username": "be0dda2dfec86",
+    "password": "56ab9c16",
+    "database": "heroku_0700efea66f1eef",
+    "host": "us-cdbr-east-03.cleardb.com",
+    "dialect": "mysql"
   }
 }
