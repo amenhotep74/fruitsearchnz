@@ -8,10 +8,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server.js",
+    "start": "node server.js",
     "devserver": "nodemon server.js",
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack"
+    "devreact": "webpack"
   },
   "keywords": [],
   "author": "",
