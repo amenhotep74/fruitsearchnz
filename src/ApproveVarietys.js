@@ -87,7 +87,12 @@ const ApproveVariety = () => {
                   <td>{row.createdAt}</td>
                   <td>{row.Specie.name}</td>
                   <td>
-                    <a className="btn btn-primary mr-1">View Sources</a>
+                    <a
+                      className="btn btn-primary mr-1"
+                      href={`/variety/sources/${row.varietyID}`}
+                    >
+                      View Sources
+                    </a>
                     <button
                       value={row.varietyID}
                       onClick={handleApprove}

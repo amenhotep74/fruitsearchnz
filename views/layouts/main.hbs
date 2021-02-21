@@ -39,15 +39,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/searchdb">Search Database</a>
                     </li>
-                    {{!-- <li class="nav-item">
-                        <a class="nav-link" href="/heritagefruit">Heritage Fruit</a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/volunteer">Volunteer</a>
-                    </li>
+                    {{#if isVolunteer}}
                     <li class="nav-item">
                         <a class="nav-link" href="/researchrecord">Research Record</a>
                     </li>
+                    {{else}}
+                    <li class="nav-item">
+                            <a class="nav-link" href="/volunteer">Volunteer</a>
+                    </li>
+                    {{/if}}
                 </ul>
                 <div class="d-flex">
                     <!-- Login Register Links -->

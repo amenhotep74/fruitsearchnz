@@ -6,7 +6,7 @@
               <div class="table-title">
                   <div class="row">
                       <div class="col-sm-6">
-                          <h2><b>Sources submited for review</b></h2>
+                          <h2><b>Your sources submited for review</b></h2>
                       </div>
                       <div class="col-sm-6">
                           <a href="/addsource" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus-circle"></i> <span>Add New Source</span></a>
@@ -23,7 +23,6 @@
                           <th>Date</th>
                           <th>Source Name</th>
                           <th>Reference</th>
-                          <th>Actions</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -34,10 +33,6 @@
                           <td>{{this.dataValues.createdAt}}</td>
                           <td>{{this.dataValues.sourcename}}</td>
                           <td>{{this.dataValues.reference}}</td>
-                          <td>
-                              <a class="btn btn-success">Edit</a>
-                              <a class="btn btn-danger">Delete</a>
-                          </td>
                       </tr>
                       {{/each}}
                   </tbody>

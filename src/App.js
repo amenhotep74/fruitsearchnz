@@ -57,7 +57,7 @@ const App = () => {
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" to="/approvevolunteers">
+                    <Link class="nav-link" to="/dashboard/approvevolunteers">
                       Approve Volunteers
                     </Link>
                   </li>

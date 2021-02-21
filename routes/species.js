@@ -39,7 +39,7 @@ router.post(
       })
       .catch((error) => {
         console.log(error);
-        return res.render("register", { msg: errors });
+        return res.render("addspecies", { msg: error });
       });
   }
 );
