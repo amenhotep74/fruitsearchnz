@@ -8,6 +8,24 @@ module.exports = (sequelize, DataTypes) => {
     updatedon: {
       type: DataTypes.DATE,
     },
+    type: {
+      type: DataTypes.STRING,
+    },
+    rootstock: {
+      type: DataTypes.STRING,
+    },
+    synonyms: {
+      type: DataTypes.STRING,
+    },
+    identitycertain: {
+      type: DataTypes.STRING,
+    },
+    public: {
+      type: DataTypes.STRING,
+    },
+    maintainedneglected: {
+      type: DataTypes.STRING,
+    },
     gpslat: {
       type: DataTypes.STRING,
     },
@@ -18,6 +36,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     blossomdate: {
+      type: DataTypes.DATEONLY,
+    },
+    fruitripedate: {
       type: DataTypes.DATEONLY,
     },
     age: {

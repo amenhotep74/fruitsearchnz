@@ -11,7 +11,7 @@ h1 {
   color: white !important;
 }
 .header {
-  background: url("../img/header.jpg");
+  background: url("../img/image4.png");
   height: 400px;
   background-position: center;
   background-size: cover;
@@ -24,4 +24,15 @@ h1 {
 .header_p {
   font-size: 1rem;
   font-weight: 400 !important;
+}
+
+/* Home page text */
+.homepagetext {
+  width: 50% !important;
+}
+/* When below 600px */
+@media only screen and (max-width: 600px) {
+  .homepagetext {
+    width: 100% !important;
+  }
 }

@@ -1,0 +1,107 @@
+{{!-- 
+
+List of species with:
+Species
+Genus
+
+Number of varieties 
+Number of trees within each species on the database
+
+--}}
+<div class="container mt-5 mb-3">
+    <div class="row">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Varieties</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Species</button>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        
+        <!-- Table -->
+        <div class="container-xl">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{#if nodata}}
+                                    <h2>{{nodata}}</h2>
+                                {{else}}
+                                    <h2><b>Varieties</b></h2>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>VarietyID</th>
+                                <th>Common Name</th>
+                                <th>Number of trees</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each dataVariety}}
+                                <tr>
+                                    <td>{{this.dataValues.varietyID}}</td>
+                                    <td>{{this.dataValues.name}}</td>
+                                    <td>{{this.dataValues.treeCount}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>
+        <!-- Table End -->
+      
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+        <!-- Table -->
+        <div class="container-xl">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{#if nodata}}
+                                    <h2>{{nodata}}</h2>
+                                {{else}}
+                                    <h2><b>Species</b></h2>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Specie</th>
+                                <th>Genus</th>
+                                <th>Number of Varieties</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each data}}
+                            <tr>
+                                <td>{{this.dataValues.species}}</td>
+                                <td>{{this.dataValues.genus}}</td>
+                                <td>{{this.dataValues.varietyCount}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
+        </div>
+        <!-- Table End -->
+
+    </div>
+</div>
+
+

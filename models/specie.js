@@ -7,14 +7,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     genus: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    species: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    description: {
-      type: DataTypes.STRING,
     },
     isApproved: {
       type: DataTypes.BOOLEAN,

@@ -19,14 +19,14 @@
 
     <form action="/species/create" method="post">
     <div class="form-group w-50">
-        <label class="mt-3" for="name">Name of species</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="e.g. Apple, Banana" required>
-
         <label class="mt-3" for="genus">Genus</label>
-        <input type="text" class="form-control" id="genus" name="genus"  aria-describedby="emailHelp" placeholder="e.g. Malus pumila" required>
+        <input type="text" class="form-control" id="genus" name="genus"  aria-describedby="emailHelp" placeholder="e.g. Malus" required>
 
-        <label class="mt-3" for="description">Description</label>
-        <input type="text" class="form-control" id="description"  name="description"  aria-describedby="emailHelp" placeholder="Description" required>
+        <label class="mt-3" for="description">Species</label>
+        <input type="text" class="form-control" id="species"  name="species"  aria-describedby="emailHelp" placeholder="e.g. Domestica">
+        <label class="mt-3" for="name">Common Name</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="e.g. Apple, Banana" required>
+        
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>

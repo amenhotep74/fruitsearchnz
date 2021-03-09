@@ -14,7 +14,6 @@ router.post(
   "/create",
   check("name", "Please include a valid email.").not().isEmpty(),
   check("species", "Species is required").not().isEmpty(),
-  check("genus", "Genus is required").not().isEmpty(),
   check("characteristics", "Characteristics is required").not().isEmpty(),
   reqAuthentication,
   async (req, res, next) => {
@@ -43,7 +42,6 @@ router.post(
         db.Variety.create({
           name: req.body.name,
           characteristics: req.body.characteristics,
-          genus: req.body.genus,
           // Foreign Key
           SpecieSpecieID: foundSpecieID,
         })

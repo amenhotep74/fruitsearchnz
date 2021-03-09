@@ -55,6 +55,8 @@ app.use("/owner", require("./routes/owner"));
 app.use("/tree", require("./routes/tree"));
 app.use("/location", require("./routes/location"));
 app.use("/source", require("./routes/source"));
+app.use("/heritagefruit", require("./routes/heritagefruit"));
+app.use("/treeregister", require("./routes/treeregister"));
 
 // Page Routers
 app.get("/", (req, res, next) => {
@@ -73,6 +75,9 @@ app.get("/addvariety", reqAuthentication, (req, res, next) => {
   // Query species from database to display in select dropdown
   db.Specie.findAll({
     attributes: ["name", "specieID"],
+    where: {
+      isApproved: 1,
+    },
   })
     .then((data) => {
       console.log(data);
@@ -85,14 +90,14 @@ app.get("/addvariety", reqAuthentication, (req, res, next) => {
 app.get("/addspecies", reqAuthentication, (req, res, next) => {
   res.render("addspecies", { layout: "main" });
 });
-app.get("/treeregister", reqAuthentication, (req, res, next) => {
+app.get("/submitdata", reqAuthentication, (req, res, next) => {
   // Query species from database to display in select dropdown
   db.Variety.findAll({
     attributes: ["name", "varietyID"],
   })
     .then((data) => {
       console.log(data);
-      res.render("treeregister", { layout: "main", variety: data });
+      res.render("submitdata", { layout: "main", variety: data });
     })
     .catch((err) => {
       console.log(err);
@@ -324,6 +329,7 @@ app.get("/uploadlocations", reqAuthentication, async (req, res, next) => {
 app.get("/uploadtrees", reqAuthentication, async (req, res, next) => {
   res.render("uploadplants");
 });
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

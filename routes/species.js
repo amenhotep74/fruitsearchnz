@@ -14,7 +14,7 @@ router.post(
   "/create",
   check("name", "Name is required").not().isEmpty(),
   check("genus", "Genus is required").not().isEmpty(),
-  check("description", "Description is required").not().isEmpty(),
+  check("species", "Species is required").not().isEmpty(),
   reqAuthentication,
   async (req, res, next) => {
     const validationErrors = validationResult(req);
@@ -26,11 +26,12 @@ router.post(
         validationErrors: validationErrors.array(),
       });
     }
+    // convert name to lowercase so it can be unique
 
     // Save fields to database
     db.Specie.create({
-      name: req.body.name,
-      description: req.body.description,
+      name: req.body.name.toLowerCase(),
+      species: req.body.species,
       genus: req.body.genus,
     })
       .then((specie) => {
