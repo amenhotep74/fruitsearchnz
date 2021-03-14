@@ -142,7 +142,6 @@ app.get("/dashboard", reqAuthentication, async (req, res, next) => {
               })
                 .then((data) => {
                   // Format Date
-                  console.log("data", data);
                   res.render("dashboard", { layout: "main", data, user });
                 })
                 .catch((err) => {
