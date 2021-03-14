@@ -1,0 +1,4 @@
+gpslat,gpslong,notes,blossomdate,age,height,trunkdiameter,diseases,type,rootstock,synonyms,identitycertain,maintainedneglected,fruitripedate,VarietyVarietyID,LocationLocationID,OwnerOwnerID
+1234,1234,Some note,12/12/2021,10,33,35,None,put type here,put rootstock here,put synonyms here,Yes,Maintained,12/12/2021,2,1,1
+12312,2353,Another Note,12/12/2021,50,2,3,None,put type here,put rootstock here,put synonyms here,Yes,Maintained,12/12/2021,5,1,1
+,,,,,,,,,,,,,,,,

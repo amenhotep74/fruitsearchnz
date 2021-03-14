@@ -21,7 +21,7 @@ let routes = (app) => {
   );
   // PLANTS
   router.post(
-    "/upload/varietys",
+    "/upload/plants",
     upload.single("file"),
     csvController.uploadplants
   );

@@ -37,6 +37,7 @@ router.post("/create", reqAuthentication, async (req, res) => {
           // Save source to database
           db.Source.create({
             sourcename: req.body.name,
+            sourcetype: req.body.sourcetype,
             date: req.body.date,
             reference: req.body.reference,
             VarietyVarietyID: varietyID,

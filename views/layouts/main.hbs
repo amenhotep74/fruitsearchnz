@@ -26,7 +26,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">FruitSearchNZ.org</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -60,17 +60,24 @@
                 <div class="d-flex">
                     <!-- Login Register Links -->
                     {{#if user}}
-                    <a class="nav-link btn btn-success mr-1 ml-1" href="/addspecies">Add Species</a>
-                    <a class="nav-link btn btn-success mr-1 ml-1" href="/addvariety">Add Variety</a>
+                    <a class="nav-link btn btn-success mr-1" href="/addspecies">Add Species</a>
+                    <a class="nav-link btn btn-success mr-1" href="/addvariety">Add Variety</a>
                     
-                    <a class="nav-link btn btn-warning mr-1 ml-1" href="/submitdata">Submit Data</a>
+                </div>
+                <div class="d-flex">
+                    <a class="nav-link btn btn-warning" href="/submitdata">Submit Data</a>
                     
                     {{#if isOwner}}
-                        <a class="nav-link btn btn-warning mr-1 ml-1" href="/addlocation">Add Location</a>
+                        <a class="nav-link btn btn-warning ml-1" href="/addlocation">Add Location</a>
                     {{/if}}
+
                     {{#unless isOwner }}
-                        <a class="nav-link btn btn-warning mr-1 ml-1" href="/ownerregister">Register as Owner</a>
+                        <a class="nav-link btn btn-warning ml-1" href="/ownerregister">Register as Owner</a>
                     {{/unless}}
+                </div>
+
+                <div class="d-flex">
+                    
                     
                         <a class="nav-link white_text">
                             <span class="">Welcome, {{username}}</span>
@@ -83,7 +90,6 @@
                     {{#if isAdmin}}
                     <a class="nav-link btn btn-danger" href="/dashboard">Admin Area</a>
                     {{/if}}
-                    
                 </div>
             </div>
         </div>

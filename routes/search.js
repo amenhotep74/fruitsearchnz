@@ -89,8 +89,19 @@ router.post("/submit", async (req, res) => {
           },
         })
           .then((dataa) => {
+            // If no varietys found on species
+            if (dataa.length === 0) {
+              console.log("No Data Triggered");
+              return res.render("searchdb", {
+                layout: "main",
+                data: data,
+                speciesname: speciesName,
+                speciesshow: true,
+              });
+            }
+
             console.log("dataa", dataa);
-            console.log("Found varieties", dataa[0].dataValues);
+            // console.log("Found varieties", dataa[0].dataValues);
             console.log("dataaaaaa", data[0].dataValues.name);
             // Join data and dataa together
             // Render data

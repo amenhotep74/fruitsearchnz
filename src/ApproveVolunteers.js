@@ -61,7 +61,7 @@ const ApproveVolunteers = () => {
   return (
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h1 class="h2">Aprrove Volunteers</h1>
+        <h1 class="h2">Approve Volunteers</h1>
       </div>
 
       <h2>Volunteers awaiting approval</h2>

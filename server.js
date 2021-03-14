@@ -269,7 +269,18 @@ app.get("/variety/sources/:id", reqAuthentication, async (req, res, next) => {
     include: [{ model: db.Variety, attributes: ["name"] }],
   })
     .then((data) => {
+      // if no source show no source
+      if (data.length === 0) {
+        console.log("NO DATA TRIGGERED");
+        return res.render("searchvarietysources", {
+          layout: "main",
+          data: data,
+          nodata: "No sources found for this variety.",
+        });
+      }
+
       const varietyname = data[0].dataValues.Variety.name;
+
       // Success Render Data
       res.render("searchvarietysources", {
         layout: "main",
@@ -279,8 +290,11 @@ app.get("/variety/sources/:id", reqAuthentication, async (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
+      // Redirect back to search
+      res.redirect("/searchdb");
     });
 });
+
 app.get("/variety/tree/:id", reqAuthentication, async (req, res, next) => {
   // Get ID of variety from button.
   console.log(req.params.id);
@@ -306,6 +320,8 @@ app.get("/variety/tree/:id", reqAuthentication, async (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
+      // Redirect back to search
+      res.redirect("/searchdb");
     });
 });
 app.get("/heritagefruit", async (req, res, next) => {

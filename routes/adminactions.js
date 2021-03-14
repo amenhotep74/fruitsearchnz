@@ -121,6 +121,20 @@ router.get("/getallvolunteers", reqAuthentication, async (req, res, next) => {
     });
 });
 
+//@route GET /adminactions/getallvolunteers
+// @desc RETRIEVE ALL THE VOLUNTERS WHERE SUBMISSION IS ACTIVE
+// @access Requires login
+router.get("/getalllocations", reqAuthentication, async (req, res, next) => {
+  db.Location.findAll({})
+    .then((data) => {
+      console.log(data);
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // @route POST /adminactions/promotetoadmin
 // @desc PROMOTE USER TO ADMIN
 // @access ADMIN ONLY

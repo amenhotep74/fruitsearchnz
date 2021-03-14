@@ -51,6 +51,7 @@ const CurrentAdmins = () => {
               <th>#</th>
               <th>username</th>
               <th>email</th>
+              <th>Admin</th>
             </tr>
           </thead>
           <tbody>

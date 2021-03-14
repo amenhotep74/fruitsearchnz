@@ -43,6 +43,7 @@ router.post(
     db.Variety.findAll({
       where: {
         name: varietyname,
+        isApproved: 1,
       },
     })
       .then((datavariety) => {

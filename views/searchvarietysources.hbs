@@ -6,7 +6,12 @@
               <div class="table-title">
                   <div class="row">
                       <div class="col-sm-6">
-                          <h2><b>Sources for {{varietyname}}</b></h2>
+                          {{#if nodata}}
+                                <h2><b>{{nodata}}</b></h2>
+                            {{else}}
+                                <h2><b>Sources for {{varietyname}}</b></h2>
+                          {{/if}}
+                          
                       </div>
                   </div>
               </div>
@@ -18,9 +23,6 @@
                           <th>Created At</th>
                           <th>Reference</th>
                           <th>Approved</th>
-                          <th>Actions</th>
-                          {{!-- <th>Create At</th>
-                          <th>Actions</th> --}}
                       </tr>
                   </thead>
                   <tbody>
@@ -31,10 +33,6 @@
                           <td>{{this.dataValues.createdAt}}</td>
                           <td>{{this.dataValues.reference}}</td>
                           <td>{{this.dataValues.isApproved}}</td>
-                          <td>
-                              <a href="/variety/tree/{{this.dataValues.varietyID}}" class="btn btn-primary" >View All Trees</a>
-                              <a href="/variety/sources/{{this.dataValues.varietyID}}" class="btn btn-success">View Sources</a>
-                          </td>
                       </tr>
                       {{/each}}
                   </tbody>

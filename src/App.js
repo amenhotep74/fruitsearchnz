@@ -8,6 +8,7 @@ import ViewOwners from "./ViewOwners";
 import ViewUsers from "./ViewUsers";
 import CurrentAdmins from "./CurrentAdmins";
 import ApproveVolunteers from "./ApproveVolunteers";
+import ViewLocations from "./ViewLocations";
 import UploadCSVS from "./uploadCSVS";
 
 const App = () => {
@@ -44,6 +45,15 @@ const App = () => {
                       to="/dashboard/viewowners"
                     >
                       View Owners
+                    </Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link
+                      activeClassName="nav-link secondary text-dark"
+                      class="nav-link"
+                      to="/dashboard/viewlocations"
+                    >
+                      View Locations
                     </Link>
                   </li>
                   <li class="nav-item">
@@ -92,6 +102,9 @@ const App = () => {
               </Route>
               <Route path="/dashboard/approvespecies">
                 <ApproveSpecies />
+              </Route>
+              <Route path="/dashboard/viewlocations">
+                <ViewLocations />
               </Route>
               <Route path="/dashboard/viewowners">
                 <ViewOwners />

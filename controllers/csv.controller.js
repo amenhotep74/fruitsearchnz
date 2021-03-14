@@ -204,6 +204,7 @@ const uploadplants = async (req, res) => {
             //   message: "Fail to import data into database!",
             //   error: error.message,
             // });
+            console.log(error);
             error = "Failed to import data into database!";
             return res.render("uploadplants", { msg: error });
           });

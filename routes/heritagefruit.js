@@ -22,6 +22,14 @@ router.get("/", async (req, res, next) => {
     group: ["Specie.specieID"],
   })
     .then((data) => {
+      if (data.length === 0) {
+        console.log("No Data Triggered");
+        return res.render("heritagefruit", {
+          layout: "main",
+          data: data,
+        });
+      }
+
       // count records
       console.log(data);
 
@@ -35,6 +43,14 @@ router.get("/", async (req, res, next) => {
         group: ["variety.varietyID"],
       })
         .then((dataVariety) => {
+          if (dataVariety.length === 0) {
+            console.log("No Data Triggered");
+            return res.render("heritagefruit", {
+              layout: "main",
+              data: data,
+              dataVariety: dataVariety,
+            });
+          }
           console.log(dataVariety);
           res.render("heritagefruit", { data: data, dataVariety: dataVariety });
         })

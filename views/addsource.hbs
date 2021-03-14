@@ -1,5 +1,5 @@
-<h1 class="text-center">Add Source</h1>
-<div class="container">
+<div class="container mt-5 mb-5">
+    <h1 class="text-center">Add Source</h1>
     <form action="/source/create" method="post">
     <div class="form-group w-50">
         
@@ -12,6 +12,9 @@
         
         <label class="mt-3" for="name">Name of source</label>
         <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Name of source">
+
+        <label class="mt-3" for="name">Source Type</label>
+        <input type="text" class="form-control" id="sourcetype" name="sourcetype" aria-describedby="emailHelp" placeholder="Type of source">
 
         <label class="mt-3" for="genus">Date of Source</label>
         <input type="date" class="form-control" id="genus" name="genus"  aria-describedby="emailHelp" placeholder="e.g. Malus pumila">

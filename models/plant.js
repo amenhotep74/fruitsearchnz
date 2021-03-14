@@ -36,10 +36,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     blossomdate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
     },
     fruitripedate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
     },
     age: {
       type: DataTypes.INTEGER,
